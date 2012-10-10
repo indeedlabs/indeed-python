@@ -6,5 +6,6 @@ setup(
     description = 'Indeed Job Search Python Api Client',
     author = 'Chad Masso',
     author_email = 'labs-team@indeed.com',
-    packages = ['indeedpy']
+    packages = ['indeedpy'],
+    install_requires=['requests==0.14.1']
 )
