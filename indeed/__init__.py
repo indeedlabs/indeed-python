@@ -30,7 +30,7 @@ class IndeedClient:
         for field in required_fields:
             if type(field) is list:
                 validation_list = [args.get(f) != None for f in field]
-                if False in validation_list:
+                if not (True in validation_list):
                     raise Exception("You must provide one of the following %s" % ",".join(field))
             elif not args.get(field):
                 raise Exception("The field %s is required" % field)
