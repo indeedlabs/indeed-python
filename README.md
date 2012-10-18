@@ -40,8 +40,7 @@ params = {
     'q' : "python",
     'l' : "austin",
     'userip' : "1.2.3.4",
-    'useragent' : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2)",
-    'format' : "json"
+    'useragent' : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2)"
 }
 
 search_response = client.search(**params)
@@ -54,7 +53,7 @@ from indeed import IndeedClient
 
 client = IndeedClient(YOUR_PUBLISHER_NUMBER)
 
-job_response = client.jobs(jobkeys = ["5898e9d8f5c0593f", "c2c41f024581eae5"], format = "json")
+job_response = client.jobs(jobkeys = ["5898e9d8f5c0593f", "c2c41f024581eae5"])
 ```
 
 ### API Paramaters
