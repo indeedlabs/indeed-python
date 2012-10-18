@@ -1,6 +1,7 @@
 import requests
 
 API_VERSION = "2"
+DEFAULT_FORMAT = "json"
 API_ROOT = "http://api.indeed.com/ads"
 API_SEARCH = {'end_point': "%s/apisearch" % API_ROOT, 'required_fields': ['userip', 'useragent', ['q', 'l']]}
 API_JOBS = {'end_point': "%s/apigetjobs" % API_ROOT, 'required_fields': ['jobkeys']}
@@ -19,9 +20,11 @@ class IndeedClient:
         return self.__process_request(API_JOBS.get('end_point'), valid_args)
 
     def __process_request(self, endpoint, args):
-        args.update({'v': API_VERSION, 'publisher': self.publisher})
+        format = args.get('format', DEFAULT_FORMAT)
+        raw = True if format == 'xml' else args.get('raw', False)
+        args.update({'v': API_VERSION, 'publisher': self.publisher, 'format': format})
         r = requests.get(endpoint, params = args)
-        return r.json if args.get('format', 'xml') == 'json' else r.content
+        return r.json if not raw else r.content
 
     def __valid_args(self, required_fields, args):
         for field in required_fields:
