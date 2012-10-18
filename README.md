@@ -74,9 +74,9 @@ The IP number of the end-user to whom the job results will be displayed. *This f
 The User-Agent (browser) of the end-user to whom the job results will be displayed. This can be obtained from the "User-Agent" HTTP request header from the end-user. *This field is required*.
 
 **format** - 
-Format. Which output format of the API you wish to use. The options are "xml" and "json.". Default is "json". The `IndeedClient` requests and parses a json repsonse by default. If you with to use the xml format, requests will be performed with the *raw* parameter set to `True`, see *raw*.
+Format. Which output format of the API you wish to use. The options are "xml" and "json.". Default is "json". The `IndeedClient` requests and parses a json repsonse by default. If you with to use the xml format, requests will be performed with the **raw** parameter set to `True`, see **raw**.
 
-**raw**
+**raw** - 
 A boolean. Receive the raw json/xml response from the Indeed API. Use in addition with *format* to specify which response format you would like. Default is `False`
 
 **sort** - 
