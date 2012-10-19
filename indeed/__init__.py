@@ -6,8 +6,10 @@ API_ROOT = "http://api.indeed.com/ads"
 API_SEARCH = {'end_point': "%s/apisearch" % API_ROOT, 'required_fields': ['userip', 'useragent', ['q', 'l']]}
 API_JOBS = {'end_point': "%s/apigetjobs" % API_ROOT, 'required_fields': ['jobkeys']}
 
-class IndeedClient:
+class IndeedClientException(Exception):
+    pass
 
+class IndeedClient:
     def __init__(self, publisher):
         self.publisher = publisher
 
@@ -31,9 +33,9 @@ class IndeedClient:
             if type(field) is list:
                 validation_list = [args.get(f) != None for f in field]
                 if not (True in validation_list):
-                    raise Exception("You must provide one of the following %s" % ",".join(field))
+                    raise IndeedClientException("You must provide one of the following %s" % ",".join(field))
             elif not args.get(field):
-                raise Exception("The field %s is required" % field)
+                raise IndeedClientException("The field %s is required" % field)
         return args
 
 
