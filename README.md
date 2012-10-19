@@ -14,7 +14,7 @@ line:
 
     $ curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
 
-### API Credentials
+## API Credentials
 
 The Indeed API needs to be called with your Indeed publisher number. You must pass this
 to the `IndeedClient` constructor.
@@ -29,12 +29,12 @@ If you do not have a publisher number, you can receive one by heading to the
 [Indeed Publisher Portal](https://ads.indeed.com/jobroll/xmlfeed).
 
 
-### Performing a Job Search
+## Performing a Job Search
 
 ```python
 from indeed import IndeedClient
 
-client = IndeedClient(YOUR_PUBLISHER_NUMBER)
+client = IndeedClient('YOUR_PUBLISHER_NUMBER')
 
 params = {
     'q' : "python",
@@ -46,19 +46,19 @@ params = {
 search_response = client.search(**params)
 ```
 
-### Retrieving Job Details
+## Retrieving Job Details
 
 ```python
 from indeed import IndeedClient
 
-client = IndeedClient(YOUR_PUBLISHER_NUMBER)
+client = IndeedClient('YOUR_PUBLISHER_NUMBER')
 
-job_response = client.jobs(jobkeys = ["5898e9d8f5c0593f", "c2c41f024581eae5"])
+job_response = client.jobs(jobkeys = ("5898e9d8f5c0593f", "c2c41f024581eae5"))
 ```
 
-### API Paramaters
+## API Paramaters
 
-#### Job Search
+### Job Search
 
 **q** - 
 Query. By default terms are ANDed. To see what is possible, use our [advanced search](http://www.indeed.com/advanced_search) page to perform a search and then check the url for the q value.
@@ -106,7 +106,7 @@ If latlong=1, returns latitude and longitude information for each job result. De
 Search within country specified. Default is *us*.
 
 
-#### Job Details
+### Job Details
 
 **jobkeys** - 
 Job keys. A list of job keys specifying the jobs to look up. *This parameter is required*.
