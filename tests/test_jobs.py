@@ -8,10 +8,7 @@ class TestJobs:
     def setup(self):
         self.client = IndeedClient("YOUR_PUBLISHER_NUMBER")
         self.params = {
-            'q' : "python",
-            'l' : "austin",
-            'userip' : "1.2.3.4",
-            'useragent' : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2)",
+            'jobkeys' : ("5898e9d8f5c0593f", "c2c41f024581eae5"),
         }
 
     def teardown(self):
@@ -19,53 +16,34 @@ class TestJobs:
         self.params = None
 
     @with_setup(setup, teardown)
-    def test_search(self):
-        search_response = self.client.search(**self.params)
-        assert type(search_response) is dict
-
-    @with_setup(setup, teardown)
-    def test_missing_one_required(self):
-        del self.params['l']
-        search_response = self.client.search(**self.params)
-        assert type(search_response) is dict
+    def test_jobs(self):
+        jobs_response = self.client.jobs(**self.params)
+        assert type(jobs_response) is dict
 
     @with_setup(setup, teardown)
     @raises(IndeedClientException)
-    def test_missing_both_required(self):
-        del self.params['q']
-        del self.params['l']
-        search_response = self.client.search(**self.params)
-
-    @with_setup(setup, teardown)
-    @raises(IndeedClientException)
-    def test_missing_userip(self):
-        del self.params['userip']
-        search_response = self.client.search(**self.params)
-
-    @with_setup(setup, teardown)
-    @raises(IndeedClientException)
-    def test_missing_useragent(self):
-        del self.params['useragent']
-        search_response = self.client.search(**self.params)
+    def test_missing_jobkeys(self):
+        del self.params['jobkeys']
+        jobs_response = self.client.jobs(**self.params)
 
     @with_setup(setup, teardown)
     def test_raw_json(self):
         self.params['raw'] = True
-        search_response = self.client.search(**self.params)
-        assert isinstance(search_response, basestring)
-        assert type(json.loads(search_response)) is dict
+        jobs_response = self.client.jobs(**self.params)
+        assert isinstance(jobs_response, basestring)
+        assert type(json.loads(jobs_response)) is dict
 
     @with_setup(setup, teardown)
     def test_raw_xml_with_paramter(self):
         self.params['format'] = "xml"
         self.params['raw'] = True
-        search_response = self.client.search(**self.params)
-        assert isinstance(search_response, basestring)
-        assert parseString(search_response)
+        jobs_response = self.client.jobs(**self.params)
+        assert isinstance(jobs_response, basestring)
+        assert parseString(jobs_response)
 
     @with_setup(setup, teardown)
     def test_raw_xml_without_paramter(self):
         self.params['format'] = "xml"
-        search_response = self.client.search(**self.params)
-        assert isinstance(search_response, basestring)
-        assert parseString(search_response)
+        jobs_response = self.client.jobs(**self.params)
+        assert isinstance(jobs_response, basestring)
+        assert parseString(jobs_response)
