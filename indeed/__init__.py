@@ -1,6 +1,5 @@
 import requests
 
-API_VERSION = "2"
 DEFAULT_FORMAT = "json"
 API_ROOT = "http://api.indeed.com/ads"
 API_SEARCH = {'end_point': "%s/apisearch" % API_ROOT, 'required_fields': ['userip', 'useragent', ['q', 'l']]}
@@ -10,8 +9,9 @@ class IndeedClientException(Exception):
     pass
 
 class IndeedClient:
-    def __init__(self, publisher):
+    def __init__(self, publisher, version = "2"):
         self.publisher = publisher
+        self.version = version
 
     def search(self, **args):
         return self.__process_request(API_SEARCH.get('end_point'), self.__valid_args(API_SEARCH.get('required_fields'), args))
@@ -24,7 +24,7 @@ class IndeedClient:
     def __process_request(self, endpoint, args):
         format = args.get('format', DEFAULT_FORMAT)
         raw = True if format == 'xml' else args.get('raw', False)
-        args.update({'v': API_VERSION, 'publisher': self.publisher, 'format': format})
+        args.update({'v': self.version, 'publisher': self.publisher, 'format': format})
         r = requests.get(endpoint, params = args)
         return r.json if not raw else r.content
 
