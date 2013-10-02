@@ -7,6 +7,6 @@ setup(
     author = 'Indeed Labs',
     author_email = 'labs-team@indeed.com',
     packages = ['indeed'],
-    install_requires=['requests==0.14.1'],
+    install_requires=['requests==2.0.0'],
     url = "https://github.com/indeedlabs/indeed-python",
 )
