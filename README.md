@@ -88,7 +88,7 @@ Distance from search location ("as the crow flies"). Default is 25.
 Start results at this result number, beginning with 0. Default is 0.
 
 **limit** - 
-Maximum number of results returned per query. Default is 10
+Maximum number of results returned per query. Default is 10, Maximum is 25
 
 **fromage** - 
 Number of days back to search.
