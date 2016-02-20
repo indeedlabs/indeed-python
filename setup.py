@@ -1,5 +1,4 @@
-from distutils.core import setup
-
+from setuptools import setup
 setup(
     name = 'indeed',
     version = '0.0.4',
@@ -7,6 +6,6 @@ setup(
     author = 'Indeed Labs',
     author_email = 'labs-team@indeed.com',
     packages = ['indeed'],
-    install_requires=['requests==2.0.0'],
+    install_requires=['requests>=2.9.1'],
     url = "https://github.com/indeedlabs/indeed-python",
 )
